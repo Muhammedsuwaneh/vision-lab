@@ -12,7 +12,7 @@ Window {
     color: "transparent"
 
     property bool cameraIsRunning: false
-    property string currentSelectedProcessor: "Face Detection"
+    property string currentSelectedProcessor: ""
 
     signal clicked()
 
@@ -70,7 +70,17 @@ Window {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
-                               root.cameraIsRunning = !root.cameraIsRunning;
+
+                               if(!root.cameraIsRunning)
+                               {
+                                    root.cameraIsRunning = VisionController.startCamera();
+                               }
+
+                               else
+                               {
+                                   root.cameraIsRunning = VisionController.stopCamera();
+                               }
+
                                root.clicked()
                             }
                         }
@@ -107,7 +117,7 @@ Window {
                                 onClicked:
                                 {
                                     root.currentSelectedProcessor = modelData
-                                    // VisionController.setMode(modelData)
+                                    VisionController.setMode(modelData)
                                 }
                             }
                         }
@@ -122,7 +132,7 @@ Window {
                 Layout.row: 2
                 Layout.topMargin: 10
                 Layout.alignment: Qt.AlignHCenter
-                Layout.preferredWidth: parent.width - 50
+                Layout.preferredWidth: parent.width - 25
                 Layout.preferredHeight: parent.height - (controlsBar.height + titleBar.height)
             }
         }

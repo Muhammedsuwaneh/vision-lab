@@ -54,7 +54,7 @@ qt_add_qml_module(appVisionLab
         SOURCES TextRecognizer.h TextRecognizer.cpp
         QML_FILES CameraView.qml
         SOURCES FaceDetector.h FaceDetector.cpp
-        SOURCES CameraImageProvider.h CameraImageProviderr.cpp
+        SOURCES CameraImageProvider.h CameraImageProvider.cpp
 )
 
 set_target_properties(appVisionLab PROPERTIES

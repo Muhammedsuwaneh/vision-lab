@@ -1,15 +1,17 @@
 #ifndef FACEDETECTOR_H
 #define FACEDETECTOR_H
 
-#include <QObject>
+#include <opencv2/opencv.hpp>
+#include <opencv2/dnn.hpp>
 
-class FaceDetector : public QObject
+class FaceDetector
 {
-    Q_OBJECT
 public:
-    explicit FaceDetector(QObject *parent = nullptr);
-
-signals:
+    explicit FaceDetector();
+    void detect(cv::Mat& frame);
+private:
+    cv::dnn::Net net;
+    float confidenceThreshold;
 };
 
 #endif // FACEDETECTOR_H

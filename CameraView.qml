@@ -16,7 +16,7 @@ Item
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
             cache: false
-            source: "image://camera/live"
+            source: "image://camera/live?" + Date.now()
 
             Connections {
                 target: camera

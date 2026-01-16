@@ -1,5 +1,8 @@
 #include "FaceDetector.h"
 
-FaceDetector::FaceDetector(QObject *parent)
-    : QObject{parent}
-{}
+FaceDetector::FaceDetector() {}
+
+void FaceDetector::detect(cv::Mat &frame)
+{
+    // the frame will be modified
+}

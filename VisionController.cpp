@@ -1,8 +1,7 @@
 #include "VisionController.h"
 #include <QDebug>
 
-VisionController::VisionController(QObject *parent)
-    : QObject{parent}
+VisionController::VisionController(CameraManager* cam, QObject *parent) : QObject{parent}, m_camera(cam)
 {}
 
 QString VisionController::mode() const
@@ -18,6 +17,16 @@ void VisionController::setMode(QString newMode)
     qDebug() << newMode;
 
     this->m_mode = newMode;
-    // set cam mode here
+    this->m_camera->setMode(newMode);
     emit modeChanged();
+}
+
+bool VisionController::startCamera()
+{
+    return this->m_camera->start();
+}
+
+bool VisionController::stopCamera()
+{
+    return this->m_camera->stop();
 }
