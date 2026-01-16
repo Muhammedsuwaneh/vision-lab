@@ -13,3 +13,5 @@ signals:
 };
 
 #endif // TEXTRECOGNIZER_H
+
+// MODEL - https://github.com/oyyd/frozen_east_text_detection.pb
