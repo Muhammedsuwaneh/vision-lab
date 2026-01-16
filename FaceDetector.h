@@ -1,6 +1,8 @@
 #ifndef FACEDETECTOR_H
 #define FACEDETECTOR_H
 
+#include <QObject>
+
 class FaceDetector : public QObject
 {
     Q_OBJECT

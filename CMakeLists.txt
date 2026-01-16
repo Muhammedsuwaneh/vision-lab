@@ -19,6 +19,7 @@ find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(OpenCV REQUIRED)
 
 include_directories(${OpenCV_INCLUDE_DIRS})
@@ -38,6 +39,9 @@ qt_add_qml_module(appVisionLab
     RESOURCES
         assets/logo.png
         assets/logo.ico
+        data/coco.names
+        data/slim.onnx
+        data/yolov5s.onnx
 
     SOURCES
         WindowController.h
@@ -45,10 +49,12 @@ qt_add_qml_module(appVisionLab
         QML_FILES ControlButton.qml
         SOURCES CameraManager.h CameraManager.cpp
         SOURCES VisionController.h VisionController.cpp
-        SOURCES FaceDetector.h FaceDetector.cpp
+        SOURCES
         SOURCES ObjectDetector.h ObjectDetector.cpp
         SOURCES TextRecognizer.h TextRecognizer.cpp
         QML_FILES CameraView.qml
+        SOURCES FaceDetector.h FaceDetector.cpp
+        SOURCES CameraImageProvider.h CameraImageProviderr.cpp
 )
 
 set_target_properties(appVisionLab PROPERTIES
@@ -65,6 +71,7 @@ target_link_libraries(appVisionLab PRIVATE Qt6::Core ${OpenCV_LIBS})
 target_link_libraries(appVisionLab PRIVATE Qt6::Core)
 target_link_libraries(appVisionLab PRIVATE Qt6::Core)
 target_link_libraries(appVisionLab PRIVATE Qt6::Widgets)
+target_link_libraries(appVisionLab PRIVATE Qt6::Core)
 target_link_libraries(appVisionLab PRIVATE Qt6::Core)
 target_link_libraries(appVisionLab PRIVATE Qt6::Core)
 target_link_libraries(appVisionLab PRIVATE Qt6::Core)

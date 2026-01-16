@@ -5,11 +5,16 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    width: 1300
-    height: 880
+    width: 1200
+    height: 900
     visible: true
     flags: Qt.FramelessWindowHint
     color: "transparent"
+
+    property bool cameraIsRunning: false
+    property string currentSelectedProcessor: "Face Detection"
+
+    signal clicked()
 
     Rectangle {
         id: appFrame
@@ -20,7 +25,7 @@ Window {
 
         GridLayout {
             anchors.fill: parent
-            rows: 2
+            rows: 3
             rowSpacing: 0
             columnSpacing: 0
 
@@ -33,13 +38,92 @@ Window {
                 z: 10
             }
 
-            ColumnLayout
-            {
-                id: mainContent
+            // CONTROLS BAR
+            Rectangle {
+                id: controlsBar
                 Layout.row: 1
                 Layout.fillWidth: true
-                Layout.preferredHeight: 200
-                z: 10
+                Layout.preferredHeight: 56
+                color: "#CAD5E2"
+                border.color: "#d1d5db"
+
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.margins: 12
+                    spacing: 8
+
+                    Rectangle {
+                        Layout.preferredWidth: 100
+                        Layout.preferredHeight: 32
+                        radius: 8
+                        color: root.cameraIsRunning ? "#FF637E" : "#155DFC"
+                        border.color: "#cad5e2"
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: root.cameraIsRunning ?  "Stop Camera" : "Start Camera"
+                            font.pixelSize: 12
+                            color: "#fff"
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                               root.cameraIsRunning = !root.cameraIsRunning;
+                               root.clicked()
+                            }
+                        }
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                    }
+
+                    Repeater
+                    {
+                        model: [ "Face Detection", "Object Detection", "Text Detection" ]
+
+                        Rectangle {
+                            Layout.preferredWidth: 120
+                            Layout.preferredHeight: 32
+                            radius: 8
+                            color: root.currentSelectedProcessor === modelData ? "#74D4FF" : "#e5e7eb"
+                            border.color: "#cad5e2"
+                            opacity: mouse.containsMouse ? 0.85 : 1
+
+                            Text {
+                                anchors.centerIn: parent
+                                text: modelData
+                                font.pixelSize: 12
+                                color: root.currentSelectedProcessor === modelData ?  "#fff" : "#1C69A8"
+                            }
+
+                            MouseArea {
+                                id: mouse
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked:
+                                {
+                                    root.currentSelectedProcessor = modelData
+                                    // VisionController.setMode(modelData)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // CAMERA View
+            CameraView
+            {
+                id: cameraView
+                Layout.row: 2
+                Layout.topMargin: 10
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: parent.width - 50
+                Layout.preferredHeight: parent.height - (controlsBar.height + titleBar.height)
             }
         }
     }

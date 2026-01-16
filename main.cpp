@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "WindowController.h"
+#include "VisionController.h"
 
 int main(int argc, char *argv[])
 {
