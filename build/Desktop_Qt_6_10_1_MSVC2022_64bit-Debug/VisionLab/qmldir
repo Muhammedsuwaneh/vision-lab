@@ -1,8 +1,0 @@
-module VisionLab
-typeinfo appVisionLab.qmltypes
-prefer :/qt/qml/VisionLab/
-Main 254.0 Main.qml
-TitleBar 254.0 TitleBar.qml
-ControlButton 254.0 ControlButton.qml
-depends QtQuick
-

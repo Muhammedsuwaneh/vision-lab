@@ -1,1 +1,0 @@
-C:/vision-lab/build/Desktop_Qt_6_10_1_MSVC2022_64bit-Debug/appVisionLab_autogen/include/../EWIEGA46WW/moc_WindowController.cpp.json

@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/qt/qml/VisionLab">
-    <file alias="qmldir">C:/vision-lab/build/Desktop_Qt_6_10_1_MSVC2022_64bit-Debug/VisionLab/qmldir</file>
-  </qresource>
-</RCC>
-
