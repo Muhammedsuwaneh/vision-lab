@@ -1,0 +1,58 @@
+{
+    "classes": [
+        {
+            "className": "WindowController",
+            "lineNumber": 8,
+            "methods": [
+                {
+                    "access": "public",
+                    "index": 0,
+                    "lineNumber": 14,
+                    "name": "minimize",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 1,
+                    "lineNumber": 15,
+                    "name": "maximize",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 2,
+                    "lineNumber": 16,
+                    "name": "close",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "mouseX",
+                            "type": "int"
+                        },
+                        {
+                            "name": "mouseY",
+                            "type": "int"
+                        }
+                    ],
+                    "index": 3,
+                    "lineNumber": 17,
+                    "name": "startDrag",
+                    "returnType": "void"
+                }
+            ],
+            "object": true,
+            "qualifiedClassName": "WindowController",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "WindowController.h",
+    "outputRevision": 69
+}

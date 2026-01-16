@@ -1,0 +1,12 @@
+-I
+C:/vision-lab/build/Desktop_Qt_6_10_1_MSVC2022_64bit-Debug
+-I
+C:/Qt/6.10.1/msvc2022_64/qml
+--resource
+C:/vision-lab/build/Desktop_Qt_6_10_1_MSVC2022_64bit-Debug/.qt/rcc/qmake_VisionLab.qrc
+--resource
+C:/vision-lab/build/Desktop_Qt_6_10_1_MSVC2022_64bit-Debug/.qt/rcc/appVisionLab_raw_qml_0.qrc
+--resource
+C:/vision-lab/build/Desktop_Qt_6_10_1_MSVC2022_64bit-Debug/.qt/rcc/appVisionLab_raw_res_0.qrc
+--module
+VisionLab

@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/qt/qml/VisionLab/">
+    <file alias="assets/logo.png">C:/vision-lab/assets/logo.png</file>
+    <file alias="assets/logo.ico">C:/vision-lab/assets/logo.ico</file>
+  </qresource>
+</RCC>
+
