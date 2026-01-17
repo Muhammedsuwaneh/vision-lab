@@ -3,18 +3,17 @@
 
 #include <QQuickImageProvider>
 #include <QMutex>
+#include "CameraManager.h"
 
 class CameraImageProvider: public QQuickImageProvider
 {
 public:
-    CameraImageProvider();
+    CameraImageProvider(CameraManager *camera);
 
 private:
-    QImage m_image;
-    QMutex m_mutex;
+    CameraManager* m_camera;
 public:
     virtual QImage requestImage(const QString &id, QSize *size, const QSize &requestedSize) override;
-    void updateImage(const QImage& image);
 };
 
 #endif // CAMERAIMAGEPROVIDER_H

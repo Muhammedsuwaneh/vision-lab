@@ -1,30 +1,43 @@
 #ifndef CAMERAMANAGER_H
 #define CAMERAMANAGER_H
 
+#include <QObject>
 #include <opencv2/opencv.hpp>
-#include <FaceDetector.h>
-#include <ObjectDetector.h>
-#include <TextRecognizer.h>
-#include "CameraImageProvider.h"
+#include "FaceDetector.h"
+#include "ObjectDetector.h"
+#include "TextRecognizer.h"
+#include <QTimer>
+#include <QImage>
 
-class CameraManager
+class CameraManager : public QObject
 {
+    Q_OBJECT
+    Q_PROPERTY(QImage frame READ frame NOTIFY frameChanged)
 public:
-    explicit CameraManager(CameraImageProvider* imageProvider);
+    explicit CameraManager();
+
     bool start();
     bool stop();
-    void setMode(QString m);
-    cv::Mat getFrame();
+    void setMode(const QString& m);
+
+    QImage frame() const;
+
 signals:
+    void frameChanged();
+
 private:
-    QString currentMode;
-    cv::VideoCapture cap;
-    FaceDetector faceDetector;
-    ObjectDetector object;
-    TextRecognizer text;
     void processFrame();
 
-    CameraImageProvider* imageProvider;
+    QString currentMode;
+    cv::VideoCapture cap;
+    bool running = false;
+
+    FaceDetector faceDetector;
+    ObjectDetector objectDetector;
+    TextRecognizer textDetector;
+
+    QTimer* timer;
+    QImage m_frame;
 };
 
 #endif // CAMERAMANAGER_H

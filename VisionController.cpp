@@ -1,7 +1,11 @@
+/*
+ * Author - Muhammed Suwaneh
+*/
+
 #include "VisionController.h"
 #include <QDebug>
 
-VisionController::VisionController(CameraManager* cam, QObject *parent) : QObject{parent}, m_camera(cam)
+VisionController::VisionController(CameraManager* cam, QObject *parent) : QObject{parent}, m_camera(cam), m_running(false)
 {}
 
 QString VisionController::mode() const
@@ -21,12 +25,25 @@ void VisionController::setMode(QString newMode)
     emit modeChanged();
 }
 
-bool VisionController::startCamera()
+void VisionController::startCamera()
 {
-    return this->m_camera->start();
+    setRunning(this->m_camera->start());
 }
 
-bool VisionController::stopCamera()
+void VisionController::stopCamera()
 {
-    return this->m_camera->stop();
+    setRunning(this->m_camera->stop());
+}
+
+bool VisionController::running() const
+{
+    return m_running;
+}
+
+void VisionController::setRunning(bool newRunning)
+{
+    if (m_running == newRunning)
+        return;
+    m_running = newRunning;
+    emit runningChanged();
 }

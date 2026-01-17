@@ -11,7 +11,7 @@ public:
     void detect(cv::Mat& frame);
 private:
     cv::dnn::Net net;
-    float confidenceThreshold;
+    float confidenceThreshold = 0.6f;
 };
 
 #endif // FACEDETECTOR_H

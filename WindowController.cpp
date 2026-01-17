@@ -1,3 +1,7 @@
+/*
+ * Author - Muhammed Suwaneh
+*/
+
 #include "WindowController.h"
 
 WindowController::WindowController(QWindow *window, QObject *parent)

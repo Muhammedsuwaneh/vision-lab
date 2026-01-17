@@ -1,4 +1,7 @@
-// TitleBar.qml
+/*
+ * Author - Muhammed Suwaneh
+*/
+
 import QtQuick
 import QtQuick.Controls
 

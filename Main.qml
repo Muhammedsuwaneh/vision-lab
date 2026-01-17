@@ -1,3 +1,7 @@
+/*
+ * Author - Muhammed Suwaneh
+*/
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
@@ -11,8 +15,7 @@ Window {
     flags: Qt.FramelessWindowHint
     color: "transparent"
 
-    property bool cameraIsRunning: false
-    property string currentSelectedProcessor: ""
+    property string currentSelectedProcessor: "Face Detection"
 
     signal clicked()
 
@@ -56,12 +59,12 @@ Window {
                         Layout.preferredWidth: 100
                         Layout.preferredHeight: 32
                         radius: 8
-                        color: root.cameraIsRunning ? "#FF637E" : "#155DFC"
+                        color: VisionController.running ? "#FF637E" : "#155DFC"
                         border.color: "#cad5e2"
 
                         Text {
                             anchors.centerIn: parent
-                            text: root.cameraIsRunning ?  "Stop Camera" : "Start Camera"
+                            text: VisionController.running ?  "Stop Camera" : "Start Camera"
                             font.pixelSize: 12
                             color: "#fff"
                         }
@@ -71,17 +74,10 @@ Window {
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
 
-                               if(!root.cameraIsRunning)
-                               {
-                                    root.cameraIsRunning = VisionController.startCamera();
-                               }
+                                root.clicked()
 
-                               else
-                               {
-                                   root.cameraIsRunning = VisionController.stopCamera();
-                               }
-
-                               root.clicked()
+                                if(!VisionController.running) VisionController.startCamera();
+                                else VisionController.stopCamera();
                             }
                         }
                     }

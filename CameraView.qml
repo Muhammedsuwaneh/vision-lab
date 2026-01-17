@@ -1,30 +1,46 @@
+/*
+ * Author - Muhammed Suwaneh
+*/
+
 import QtQuick
 
-Item
-{
+Item {
     id: root
 
-    Rectangle
-    {
+    Rectangle {
+        id: container
         width: parent.width
         height: parent.height - 20
-        color: "#000"
         radius: 20
+        color: "#000"
 
         Image {
             id: cameraView
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
             cache: false
-            source: "image://camera/live?" + Date.now()
+            opacity: VisionController.running ? 1.0 : 0.0
+            source: VisionController.running ? "image://camera/live" : ""
 
             Connections {
                 target: camera
                 function onFrameChanged() {
-                    cameraView.source = "image://camera/live?" + Date.now()
+                    if (VisionController.running)
+                        cameraView.source = "image://camera/live?" + Date.now()
                 }
             }
         }
-    }
 
+        Text {
+            anchors.centerIn: parent
+            text: "Camera Off"
+            color: "white"
+            font.pixelSize: 22
+            opacity: VisionController.running ? 0 : 1
+
+            Behavior on opacity {
+                NumberAnimation { duration: 250 }
+            }
+        }
+    }
 }

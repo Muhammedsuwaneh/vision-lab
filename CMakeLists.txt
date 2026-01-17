@@ -39,9 +39,13 @@ qt_add_qml_module(appVisionLab
     RESOURCES
         assets/logo.png
         assets/logo.ico
+
+
         data/coco.names
-        data/slim.onnx
-        data/yolov5s.onnx
+        data/yolov4-tiny.cfg
+        data/yolov4-tiny.weights
+        data/res10_300x300_ssd_iter_140000.caffemodel
+        data/deploy.prototxt
 
     SOURCES
         WindowController.h

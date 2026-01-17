@@ -1,72 +1,123 @@
+/*
+ * Author - Muhammed Suwaneh
+*/
+
 #include "CameraManager.h"
-#include <thread>
-#include <QImage>
+#include <QThread>
 #include <QDebug>
 
-CameraManager::CameraManager(CameraImageProvider* imageProvider) : imageProvider(imageProvider) {}
+CameraManager::CameraManager() : currentMode("Face Detection")
+{
+    this->timer = new QTimer(this);
+}
 
+// convert opencv mat to QImage
 inline QImage matToQImage(const cv::Mat& mat)
 {
     switch (mat.type())
     {
-    case CV_8UC3:
-        return QImage(
-                   mat.data,
-                   mat.cols,
-                   mat.rows,
-                   mat.step,
-                   QImage::Format_BGR888
-                   ).copy();
+        case CV_8UC3:
+            return QImage(
+                       mat.data,
+                       mat.cols,
+                       mat.rows,
+                       mat.step,
+                       QImage::Format_BGR888
+                       ).copy();
 
-    case CV_8UC1:
-        return QImage(
-                   mat.data,
-                   mat.cols,
-                   mat.rows,
-                   mat.step,
-                   QImage::Format_Grayscale8
-                   ).copy();
+        case CV_8UC1:
+            return QImage(
+                       mat.data,
+                       mat.cols,
+                       mat.rows,
+                       mat.step,
+                       QImage::Format_Grayscale8
+                       ).copy();
 
-    default:
-        return QImage();
+        default:
+            return QImage();
     }
 }
 
 bool CameraManager::start()
 {
-    try
-    {
-        cap.open(0);
-        std::thread([this]() { processFrame(); }).detach();
+    if (running)
         return true;
-    }
-    catch (const char* msg)
-    {
-        qDebug() << msg;
+
+    if (!cap.open(0))
         return false;
-    }
+
+    running = true;
+
+    // Run capture loop in background thread
+    std::thread([this]() { processFrame(); }).detach();
+
+    return true;
 }
 
-void CameraManager::setMode(QString mode)
+bool CameraManager::stop()
 {
-    this->currentMode = mode;
+    if (!running)
+        return false;
+
+    running = false;
+
+    if (cap.isOpened())
+        cap.release();
+
+    return true;
+}
+
+void CameraManager::setMode(const QString& m)
+{
+    currentMode = m;
 }
 
 void CameraManager::processFrame()
 {
-    cv::Mat frame;
-    while(cap.isOpened())
+    try
     {
-        cap >> frame;
-        if(frame.empty()) continue;
+        cv::Mat mat;
 
-        if(this->currentMode == "Face Detection") faceDetector.detect(frame);
-        else if(this->currentMode == "Object Detection") qDebug() << "";
-        else if(this->currentMode == "Text Detection")  qDebug() << "";
+        while(running)
+        {
+            this->cap >> mat;
+            if (mat.empty())
+                continue;
 
-        QImage img = matToQImage(frame);
-        this->imageProvider->updateImage(img);
+            // start detecting
+            if(currentMode == "Face Detection")
+                faceDetector.detect(mat);
+            else if (currentMode == "Object Detection") {
+                objectDetector.detect(mat);
+            }
+            else if (currentMode == "Text Detection") {
+                textDetector.detect(mat);
+            }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            cv::cvtColor(mat, mat, cv::COLOR_BGR2RGB);
+
+            this->m_frame = QImage(
+                                mat.data,
+                                mat.cols,
+                                mat.rows,
+                                static_cast<int>(mat.step),
+                                QImage::Format_RGB888
+                                ).copy();
+
+
+            emit frameChanged();
+
+            QThread::msleep(15);
+        }
     }
+    catch(QString msg)
+    {
+        qDebug() << msg;
+    }
+}
+
+QImage CameraManager::frame() const
+{
+    return m_frame;
 }
