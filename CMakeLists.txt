@@ -40,7 +40,6 @@ qt_add_qml_module(appVisionLab
         assets/logo.png
         assets/logo.ico
 
-
         data/coco.names
         data/yolov4-tiny.cfg
         data/yolov4-tiny.weights

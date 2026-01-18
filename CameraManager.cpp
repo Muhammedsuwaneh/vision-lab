@@ -8,7 +8,7 @@
 
 CameraManager::CameraManager() : currentMode("Face Detection")
 {
-    this->timer = new QTimer(this);
+    //this->timer = new QTimer(this);
 }
 
 // convert opencv mat to QImage

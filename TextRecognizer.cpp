@@ -9,7 +9,7 @@ TextRecognizer::TextRecognizer(QObject *parent)
     : QObject{parent}
 {}
 
-void TextRecognizer::detect(cv::Mat frame)
+void TextRecognizer::detect(cv::Mat &frame)
 {
     qDebug() << "detecting text";
 }

@@ -9,7 +9,7 @@ class TextRecognizer : public QObject
     Q_OBJECT
 public:
     explicit TextRecognizer(QObject *parent = nullptr);
-    void detect(cv::Mat frame);
+    void detect(cv::Mat& frame);
 
 signals:
 };
