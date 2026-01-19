@@ -84,7 +84,7 @@ Example (Windows):
 
 ```bash
 # Clone the repository
-git clone https://github.com/Muhammedsuwaneh/vision-lab
+git clone https://github.com/Muhammedsuwaneh/vision-lab.git
 
 # Navigate to the project folder
 cd vision-lab
