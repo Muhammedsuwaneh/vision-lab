@@ -127,5 +127,5 @@ Camera permissions are granted (Linux/macOS)
 ## Version 
 1.0.0
 
-## Licenced
+## Licensed
 Under [`MIT`](LICENSE) - Copyright 2025/2026 
