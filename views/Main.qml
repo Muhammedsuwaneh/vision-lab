@@ -12,12 +12,10 @@ Window {
     width: 1200
     height: 900
     visible: true
-    flags: Qt.FramelessWindowHint
+    flags: Qt.FramelessWindowHint | Qt.Window
     color: "transparent"
 
     property string currentSelectedProcessor: "Face Detection"
-
-    signal clicked()
 
     Rectangle {
         id: appFrame
@@ -67,18 +65,12 @@ Window {
                             text: VisionController.running ?  "Stop Camera" : "Start Camera"
                             font.pixelSize: 12
                             color: "#fff"
-
-                            /*Behavior on text {
-                                NumberAnimation { duration: 150 }
-                            }*/
                         }
 
                         MouseArea {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
-
-                                root.clicked()
 
                                 if(!VisionController.running) VisionController.startCamera();
                                 else VisionController.stopCamera();

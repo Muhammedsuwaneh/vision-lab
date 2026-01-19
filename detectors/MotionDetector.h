@@ -11,7 +11,11 @@ public:
     explicit MotionDetector(QObject *parent = nullptr);
     void detect(cv::Mat& frame);
 
-signals:
+private:
+    cv::Ptr<cv::BackgroundSubtractor> bgSubtractor;
+    cv::Mat fgMask;
+
+    int minArea;
 };
 
 #endif // MOTIONDETECTOR_H

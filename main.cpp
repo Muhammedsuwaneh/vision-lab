@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QIcon>
 
 #include "controllers/WindowController.h"
 #include "controllers/VisionController.h"
@@ -14,6 +15,8 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+
+    //app.setWindowIcon(QIcon(":/assets/logo.ico"));
 
     QQmlApplicationEngine engine;
 

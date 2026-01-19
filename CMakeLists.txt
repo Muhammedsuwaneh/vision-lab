@@ -57,6 +57,7 @@ qt_add_qml_module(appVisionLab
         QML_FILES views/CameraView.qml
         SOURCES detectors/FaceDetector.h detectors/FaceDetector.cpp
         SOURCES utilities/CameraImageProvider.h utilities/CameraImageProvider.cpp
+        RESOURCES
 )
 
 set_target_properties(appVisionLab PROPERTIES
