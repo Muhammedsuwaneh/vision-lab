@@ -9,32 +9,32 @@ The project focuses on a robust camera pipeline, live image rendering, and an ex
 
 The current implementation prioritizes performance, stability, and clean architecture, with detectors designed to be developed and integrated as separate modules or projects.
 
-✨ Features
+## • Features
 
--> Live camera capture using OpenCV
+- Live camera capture using OpenCV
 
--> Real-time frame rendering in QML via a custom QQuickImageProvider
+- Real-time frame rendering in QML via a custom QQuickImageProvider
 
--> Clean separation between UI, camera management, and vision logic
+- Clean separation between UI, camera management, and vision logic
 
--> Motion detection module (lightweight and CPU-friendly)
+- Motion detection module (lightweight and CPU-friendly)
 
--> Dark/idle frame handling when no camera stream is available
+- Dark/idle frame handling when no camera stream is available
 
--> Extensible design for adding future detectors (object, text, etc.)
+- Extensible design for adding future detectors (object, text, etc.)
 
-🛠️ Technologies Used
+## • Technologies Used
 
--> C++ (C++17)
--> Qt 6
--> Qt Quick (QML)
--> Qt Core / GUI
--> OpenCV
--> CMake
--> QML Image Provider
--> Multithreading (std::thread)
+- C++ (C++17)
+- Qt 6
+- Qt Quick (QML)
+- Qt Core / GUI
+- OpenCV
+- CMake
+- QML Image Provider
+- Multithreading (std::thread)
 
-🧠 Models Used in This Project
+## • Models Used in This Project
 -> Face Detection
 
 Model:ResNet SSD Face Detector (Caffe)
@@ -60,9 +60,8 @@ Framework: OpenCV
 Purpose: Detect motion regions in the camera feed.
 
 ![Screenshot](screenshots/MotionDetection.png)
-
-⚙️ Setup & Development
-## Prerequisites
+## • Setup & Development
+## • Prerequisites
 
 Make sure you have the following installed:
 
@@ -76,7 +75,7 @@ CMake ≥ 3.16
 C++17 compatible compiler
 MSVC / GCC / Clang
 
-## OpenCV Setup
+## • OpenCV Setup
 
 Ensure OpenCV is correctly installed and accessible.
 
@@ -110,7 +109,7 @@ cmake --build .
 ```
 Or open directly in Qt Creator and configure with CMake
 
-## Run the Application
+## • Run the Application
 
 After building:
 
@@ -124,8 +123,8 @@ A webcam is connected
 
 Camera permissions are granted (Linux/macOS)
 
-## Version 
+## • Version 
 1.0.0
 
-## Licensed
+## • Licensed
 Under [`MIT`](LICENSE) - Copyright 2025/2026 
