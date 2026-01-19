@@ -67,6 +67,10 @@ Window {
                             text: VisionController.running ?  "Stop Camera" : "Start Camera"
                             font.pixelSize: 12
                             color: "#fff"
+
+                            /*Behavior on text {
+                                NumberAnimation { duration: 150 }
+                            }*/
                         }
 
                         MouseArea {
@@ -88,7 +92,7 @@ Window {
 
                     Repeater
                     {
-                        model: [ "Face Detection", "Object Detection", "Text Detection" ]
+                        model: [ "Face Detection", "Object Detection", "Motion Detection" ]
 
                         Rectangle {
                             Layout.preferredWidth: 120

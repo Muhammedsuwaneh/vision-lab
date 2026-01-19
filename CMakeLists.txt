@@ -52,9 +52,8 @@ qt_add_qml_module(appVisionLab
         QML_FILES views/ControlButton.qml
         SOURCES utilities/CameraManager.h utilities/CameraManager.cpp
         SOURCES controllers/VisionController.h controllers/VisionController.cpp
-        SOURCES
         SOURCES detectors/ObjectDetector.h detectors/ObjectDetector.cpp
-        SOURCES detectors/TextRecognizer.h detectors/TextRecognizer.cpp
+        SOURCES detectors/MotionDetector.h detectors/MotionDetector.cpp
         QML_FILES views/CameraView.qml
         SOURCES detectors/FaceDetector.h detectors/FaceDetector.cpp
         SOURCES utilities/CameraImageProvider.h utilities/CameraImageProvider.cpp

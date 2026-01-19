@@ -65,6 +65,9 @@ bool CameraManager::stop()
     if (cap.isOpened())
         cap.release();
 
+    m_frame = QImage();
+    emit frameCleared();
+
     return true;
 }
 
@@ -79,8 +82,10 @@ void CameraManager::processFrame()
     {
         cv::Mat mat;
 
-        while(running)
+        while(true)
         {
+            if(!running) break;
+
             this->cap >> mat;
             if (mat.empty())
                 continue;
@@ -91,8 +96,8 @@ void CameraManager::processFrame()
             else if (currentMode == "Object Detection") {
                 objectDetector.detect(mat);
             }
-            else if (currentMode == "Text Detection") {
-                textDetector.detect(mat);
+            else if (currentMode == "Motion Detection") {
+                motionDetector.detect(mat);
             }
 
             cv::cvtColor(mat, mat, cv::COLOR_BGR2RGB);
@@ -105,6 +110,9 @@ void CameraManager::processFrame()
                                 QImage::Format_RGB888
                                 ).copy();
 
+
+            if (!running)
+                break;
 
             emit frameChanged();
 

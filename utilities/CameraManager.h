@@ -5,7 +5,7 @@
 #include <opencv2/opencv.hpp>
 #include "detectors/FaceDetector.h"
 #include "detectors/ObjectDetector.h"
-#include "detectors/TextRecognizer.h"
+#include "detectors/MotionDetector.h"
 #include <QTimer>
 #include <QImage>
 
@@ -24,6 +24,7 @@ public:
 
 signals:
     void frameChanged();
+    void frameCleared();
 
 private:
     void processFrame();
@@ -34,7 +35,7 @@ private:
 
     FaceDetector faceDetector;
     ObjectDetector objectDetector;
-    TextRecognizer textDetector;
+    MotionDetector motionDetector;
 
     QTimer* timer;
     QImage m_frame;

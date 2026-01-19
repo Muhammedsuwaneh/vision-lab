@@ -14,19 +14,38 @@ Item {
         radius: 20
         color: "#000"
 
-        Image {
-            id: cameraView
+        // 🔹 Mask wrapper (important)
+        Rectangle {
+            id: mask
             anchors.fill: parent
-            fillMode: Image.PreserveAspectFit
-            cache: false
-            opacity: VisionController.running ? 1.0 : 0.0
-            source: VisionController.running ? "image://camera/live" : ""
+            radius: container.radius
+            color: "transparent"
+            clip: true
 
-            Connections {
-                target: camera
-                function onFrameChanged() {
-                    if (VisionController.running)
-                        cameraView.source = "image://camera/live?" + Date.now()
+            Image {
+                id: cameraView
+                anchors.fill: parent
+                anchors.margins: 10
+                fillMode: Image.PreserveAspectCrop
+                cache: false
+                smooth: true
+                visible: VisionController.running
+                source: VisionController.running ? "image://camera/live" : ""
+
+                Connections {
+                    target: camera
+                    function onFrameCleared() {
+                            cameraView.source = ""
+                    }
+
+                    function onFrameChanged() {
+                        if (VisionController.running)
+                            cameraView.source = "image://camera/live?" + Date.now()
+                    }
+                }
+
+                Behavior on opacity {
+                    NumberAnimation { duration: 250 }
                 }
             }
         }

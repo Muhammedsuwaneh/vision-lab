@@ -27,12 +27,14 @@ void VisionController::setMode(QString newMode)
 
 void VisionController::startCamera()
 {
-    setRunning(this->m_camera->start());
+    if (this->m_camera->start())
+        setRunning(true);
 }
 
 void VisionController::stopCamera()
 {
-    setRunning(this->m_camera->stop());
+    setRunning(false);
+    this->m_camera->stop();
 }
 
 bool VisionController::running() const
