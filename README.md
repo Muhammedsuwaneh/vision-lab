@@ -1,5 +1,6 @@
 # Vision Lab - Computer Vision Application
-## Developer: Muhammed Suwaneh | Software Engineer | R&D | Embedded & Enterprise Software Developer
+
+Developer: Muhammed Suwaneh | Software Engineer | R&D | Embedded & Enterprise Software Developer
 
 ![Screenshot](screenshots/MainWindow.png)
 
