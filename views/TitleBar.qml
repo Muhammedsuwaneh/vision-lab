@@ -69,7 +69,14 @@ Item {
 
         ControlButton { backgroundColor: "#FFD230"; onClicked: WindowController.minimize() }
         ControlButton { backgroundColor: "#05DF72"; onClicked: WindowController.maximize() }
-        ControlButton { backgroundColor: "#F4320B"; onClicked: WindowController.close() }
+        ControlButton
+        {
+            backgroundColor: "#F4320B";
+            onClicked: {
+                if(VisionController.running) VisionController.stopCamera();
+                WindowController.close()
+            }
+        }
     }
 }
 
