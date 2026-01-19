@@ -33,31 +33,31 @@ qt_add_executable(appVisionLab
 qt_add_qml_module(appVisionLab
     URI VisionLab
     QML_FILES
-        Main.qml
-        TitleBar.qml
+        views/Main.qml
+        views/TitleBar.qml
 
     RESOURCES
         assets/logo.png
         assets/logo.ico
 
-        data/coco.names
-        data/yolov4-tiny.cfg
-        data/yolov4-tiny.weights
-        data/res10_300x300_ssd_iter_140000.caffemodel
-        data/deploy.prototxt
+        models/coco.names
+        models/yolov4-tiny.cfg
+        models/yolov4-tiny.weights
+        models/res10_300x300_ssd_iter_140000.caffemodel
+        models/deploy.prototxt
 
     SOURCES
-        WindowController.h
-        WindowController.cpp
-        QML_FILES ControlButton.qml
-        SOURCES CameraManager.h CameraManager.cpp
-        SOURCES VisionController.h VisionController.cpp
+        controllers/WindowController.h
+        controllers/WindowController.cpp
+        QML_FILES views/ControlButton.qml
+        SOURCES utilities/CameraManager.h utilities/CameraManager.cpp
+        SOURCES controllers/VisionController.h controllers/VisionController.cpp
         SOURCES
-        SOURCES ObjectDetector.h ObjectDetector.cpp
-        SOURCES TextRecognizer.h TextRecognizer.cpp
-        QML_FILES CameraView.qml
-        SOURCES FaceDetector.h FaceDetector.cpp
-        SOURCES CameraImageProvider.h CameraImageProvider.cpp
+        SOURCES detectors/ObjectDetector.h detectors/ObjectDetector.cpp
+        SOURCES detectors/TextRecognizer.h detectors/TextRecognizer.cpp
+        QML_FILES views/CameraView.qml
+        SOURCES detectors/FaceDetector.h detectors/FaceDetector.cpp
+        SOURCES utilities/CameraImageProvider.h utilities/CameraImageProvider.cpp
 )
 
 set_target_properties(appVisionLab PROPERTIES

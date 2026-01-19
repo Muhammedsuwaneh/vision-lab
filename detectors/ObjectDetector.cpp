@@ -10,9 +10,9 @@ ObjectDetector::ObjectDetector(QObject *parent) : QObject(parent)
 {
     QDir appDir(QCoreApplication::applicationDirPath());
 
-    QString cfgPath     = appDir.filePath("VisionLab/data/yolov4-tiny.cfg");
-    QString weightsPath = appDir.filePath("VisionLab/data/yolov4-tiny.weights");
-    QString namesPath   = appDir.filePath("VisionLab/data/coco.names");
+    QString cfgPath     = appDir.filePath("VisionLab/models/yolov4-tiny.cfg");
+    QString weightsPath = appDir.filePath("VisionLab/models/yolov4-tiny.weights");
+    QString namesPath   = appDir.filePath("VisionLab/models/coco.names");
 
     if (!QFile::exists(cfgPath) || !QFile::exists(weightsPath))
     {

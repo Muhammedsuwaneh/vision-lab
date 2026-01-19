@@ -2,7 +2,7 @@
 #define VISIONCONTROLLER_H
 
 #include <QObject>
-#include "CameraManager.h"
+#include "utilities/CameraManager.h"
 
 class VisionController : public QObject
 {

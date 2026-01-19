@@ -3,9 +3,9 @@
 
 #include <QObject>
 #include <opencv2/opencv.hpp>
-#include "FaceDetector.h"
-#include "ObjectDetector.h"
-#include "TextRecognizer.h"
+#include "detectors/FaceDetector.h"
+#include "detectors/ObjectDetector.h"
+#include "detectors/TextRecognizer.h"
 #include <QTimer>
 #include <QImage>
 

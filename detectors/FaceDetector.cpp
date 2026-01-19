@@ -15,8 +15,8 @@ FaceDetector::FaceDetector()
         QDir appDir(QCoreApplication::applicationDirPath());
 
         // get face detection models
-        QString protoPath = appDir.filePath("VisionLab/data/deploy.prototxt");
-        QString modelPath = appDir.filePath("VisionLab/data/res10_300x300_ssd_iter_140000.caffemodel");
+        QString protoPath = appDir.filePath("VisionLab/models/deploy.prototxt");
+        QString modelPath = appDir.filePath("VisionLab/models/res10_300x300_ssd_iter_140000.caffemodel");
 
         if (!QFileInfo::exists(protoPath) || !QFileInfo::exists(modelPath)) {
             throw("Face detection files NOT FOUND");

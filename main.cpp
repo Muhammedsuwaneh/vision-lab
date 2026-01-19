@@ -6,10 +6,10 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "WindowController.h"
-#include "VisionController.h"
-#include "CameraImageProvider.h"
-#include "CameraManager.h"
+#include "controllers/WindowController.h"
+#include "controllers/VisionController.h"
+#include "utilities/CameraImageProvider.h"
+#include "utilities/CameraManager.h"
 
 int main(int argc, char *argv[])
 {
