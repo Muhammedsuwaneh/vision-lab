@@ -2,90 +2,67 @@ cmake_minimum_required(VERSION 3.16)
 
 project(VisionLab VERSION 0.1 LANGUAGES CXX)
 
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# OpenCV
 set(OpenCV_DIR "C:/opencv/build/x64/vc16/lib")
-find_package(Qt6 REQUIRED COMPONENTS Quick)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(OpenCV REQUIRED)
 
-include_directories(${OpenCV_INCLUDE_DIRS})
+# Qt
+find_package(Qt6 REQUIRED COMPONENTS
+    Core
+    Widgets
+    Quick
+    Qml
+)
 
 qt_standard_project_setup(REQUIRES 6.8)
 
 qt_add_executable(appVisionLab
     main.cpp
+    app.rc
 )
 
 qt_add_qml_module(appVisionLab
     URI VisionLab
+    VERSION 1.0
+
     QML_FILES
         views/Main.qml
         views/TitleBar.qml
+        views/ControlButton.qml
+        views/CameraView.qml
+
+    SOURCES
+        controllers/WindowController.h controllers/WindowController.cpp
+        controllers/VisionController.h controllers/VisionController.cpp
+        utilities/CameraManager.h utilities/CameraManager.cpp
+        utilities/CameraImageProvider.h utilities/CameraImageProvider.cpp
+        detectors/ObjectDetector.h detectors/ObjectDetector.cpp
+        detectors/MotionDetector.h detectors/MotionDetector.cpp
+        detectors/FaceDetector.h detectors/FaceDetector.cpp
 
     RESOURCES
         assets/logo.png
         assets/logo.ico
-
         models/coco.names
         models/yolov4-tiny.cfg
         models/yolov4-tiny.weights
         models/res10_300x300_ssd_iter_140000.caffemodel
         models/deploy.prototxt
+)
 
-    SOURCES
-        controllers/WindowController.h
-        controllers/WindowController.cpp
-        QML_FILES views/ControlButton.qml
-        SOURCES utilities/CameraManager.h utilities/CameraManager.cpp
-        SOURCES controllers/VisionController.h controllers/VisionController.cpp
-        SOURCES detectors/ObjectDetector.h detectors/ObjectDetector.cpp
-        SOURCES detectors/MotionDetector.h detectors/MotionDetector.cpp
-        QML_FILES views/CameraView.qml
-        SOURCES detectors/FaceDetector.h detectors/FaceDetector.cpp
-        SOURCES utilities/CameraImageProvider.h utilities/CameraImageProvider.cpp
-        RESOURCES
+target_include_directories(appVisionLab PRIVATE ${OpenCV_INCLUDE_DIRS})
+
+target_link_libraries(appVisionLab PRIVATE
+    Qt6::Core
+    Qt6::Widgets
+    Qt6::Quick
+    Qt6::Qml
+    ${OpenCV_LIBS}
 )
 
 set_target_properties(appVisionLab PROPERTIES
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
-
-target_link_libraries(appVisionLab
-    PRIVATE Qt6::Quick ${OPEN}
-)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core ${OpenCV_LIBS})
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-target_link_libraries(appVisionLab PRIVATE Qt6::Widgets)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-target_link_libraries(appVisionLab PRIVATE Qt6::Core)
-
-include(GNUInstallDirs)
-install(TARGETS appVisionLab BUNDLE DESTINATION . LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} )
-

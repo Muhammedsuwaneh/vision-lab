@@ -38,8 +38,8 @@ Item {
             width: 20
             height: 20
             mipmap: true
-            fillMode: Image.PreserveAspectFit
-            source: "assets/logo.png"
+            fillMode: Image.PreserveAspectCrop
+            source: "../assets/logo.png"
         }
 
         Text {

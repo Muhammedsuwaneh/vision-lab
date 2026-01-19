@@ -42,11 +42,15 @@ Files: deploy.prototxt, res10_300x300_ssd_iter_140000.caffemodel
 Framework: OpenCV DNN
 Purpose: Detect human faces in the live camera stream.
 
+![Screenshot](screenshots/Face Detection.png)
+
 -> Object Detection
 
 Model: YOLOv4-Tiny
 Files: yolov4-tiny.cfg, yolov4-tiny.weights, coco.names
 Framework: OpenCV DNN (Darknet backend)
+
+![Screenshot](screenshots/Object Detection.png)
 
 -> Motion Detection
 
@@ -54,6 +58,8 @@ Model: Background Subtraction (No ML model)
 Algorithm: OpenCV Background Subtractor (e.g. MOG2)
 Framework: OpenCV
 Purpose: Detect motion regions in the camera feed.
+
+![Screenshot](screenshots/Motion Detection.png)
 
 ⚙️ Setup & Development
 ## Prerequisites
