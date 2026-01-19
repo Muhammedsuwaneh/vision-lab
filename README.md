@@ -35,7 +35,7 @@ The current implementation prioritizes performance, stability, and clean archite
 - Multithreading (std::thread)
 
 ## • Models Used in This Project
--> Face Detection
+- Face Detection
 
 Model:ResNet SSD Face Detector (Caffe)
 Files: deploy.prototxt, res10_300x300_ssd_iter_140000.caffemodel
@@ -44,7 +44,7 @@ Purpose: Detect human faces in the live camera stream.
 
 ![Screenshot](screenshots/FaceDetection.png)
 
--> Object Detection
+- Object Detection
 
 Model: YOLOv4-Tiny
 Files: yolov4-tiny.cfg, yolov4-tiny.weights, coco.names
@@ -52,7 +52,7 @@ Framework: OpenCV DNN (Darknet backend)
 
 ![Screenshot](screenshots/ObjectDetection.png)
 
--> Motion Detection
+- Motion Detection
 
 Model: Background Subtraction (No ML model)
 Algorithm: OpenCV Background Subtractor (e.g. MOG2)
@@ -114,13 +114,10 @@ Or open directly in Qt Creator and configure with CMake
 After building:
 
 Run from Qt Creator or
-
 Execute the generated binary from the build folder
-
 Make sure:
 
 A webcam is connected
-
 Camera permissions are granted (Linux/macOS)
 
 ## • Version 
