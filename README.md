@@ -1,7 +1,5 @@
 # Vision Lab - Computer Vision Application
 
-Developer: Muhammed Suwaneh | Software Engineer | R&D | Embedded & Enterprise Software Developer
-
 ![Screenshot](screenshots/MainWindow.png)
 
 VisionLab is a real-time computer vision application built with Qt (QML + C++) and OpenCV.
