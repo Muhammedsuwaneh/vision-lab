@@ -3,7 +3,7 @@
 ![Screenshot](screenshots/MainWindow.png)
 
 VisionLab is a real-time computer vision application built with Qt (QML + C++) and OpenCV.
-The project focuses on a robust camera pipeline, live image rendering, and an extensible architecture for adding vision modules (such as motion detection, object detection, face detection) in a clean and modular way.
+The project focuses on a camera pipeline, live image rendering, and an extensible architecture for adding vision modules (such as motion detection, object detection, face detection) in a clean and modular way.
 
 The current implementation prioritizes performance, stability, and clean architecture, with detectors designed to be developed and integrated as separate modules or projects.
 
